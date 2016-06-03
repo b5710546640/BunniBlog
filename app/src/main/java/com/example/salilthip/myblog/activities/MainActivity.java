@@ -3,18 +3,17 @@ package com.example.salilthip.myblog.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.test.RenamingDelegatingContext;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.salilthip.myblog.R;
-import com.example.salilthip.myblog.adapters.BlogAdapter;
+import com.example.salilthip.myblog.adapters.ThumbnailAdapter;
 import com.example.salilthip.myblog.models.Blog;
 import com.example.salilthip.myblog.models.Thumbnail;
 import com.example.salilthip.myblog.utils.Storage;
@@ -24,20 +23,30 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BlogAdapter blogAdapter;
+    private ThumbnailAdapter thumbnailAdapter;
     private ListView blogCellListView;
-//    private List<Thumbnail> thumbs;
+    private List<Thumbnail> thumbs;
     private List<Blog> dummyList;
+
 
     public void initComponents(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         blogCellListView = (ListView) findViewById(R.id.blog_cell_listview);
-//        thumbs = new ArrayList<Thumbnail>();
-        dummyList = new ArrayList<Blog>();
-        blogAdapter = new BlogAdapter(this,R.layout.blog_cell,dummyList);
-        blogCellListView.setAdapter(blogAdapter);
 
+
+        thumbs = new ArrayList<Thumbnail>();
+        dummyList = new ArrayList<Blog>();
+        thumbnailAdapter = new ThumbnailAdapter(this,R.layout.thumb_cell,thumbs);
+        blogCellListView.setAdapter(thumbnailAdapter);
+        blogCellListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, ViewBlogActivity.class);
+                intent.putExtra("pos_blog", position);
+                startActivity(intent);
+            }
+        });
         FloatingActionButton addblog = (FloatingActionButton) findViewById(R.id.add_blog);
         addblog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +67,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void refresh(){
         dummyList.clear();
-//        thumbs.clear();
-//        thumbs.addAll(Storage.getInstance().getThumbList());
         dummyList.addAll(Storage.getInstance().getBlogList());
-        blogAdapter.notifyDataSetChanged();
+        refreshAllThumbnail();
+        thumbnailAdapter.notifyDataSetChanged();
+    }
+
+    public void refreshAllThumbnail(){
+        thumbs.clear();
+        for(Blog b:dummyList){
+            thumbs.add(b.getThumbnail());
+        }
     }
 
     @Override

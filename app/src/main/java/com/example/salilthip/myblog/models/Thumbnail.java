@@ -1,5 +1,7 @@
 package com.example.salilthip.myblog.models;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by Salilthip on 4/13/2016.
  */

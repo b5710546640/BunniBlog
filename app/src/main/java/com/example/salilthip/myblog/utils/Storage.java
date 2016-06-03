@@ -1,5 +1,7 @@
 package com.example.salilthip.myblog.utils;
 
+import android.graphics.Bitmap;
+
 import com.example.salilthip.myblog.models.Blog;
 import com.example.salilthip.myblog.models.Thumbnail;
 
@@ -26,7 +28,6 @@ public class Storage {
 
     public void addNewBlog(Blog blog){
         blogList.add(blog);
-        //thumbList.add(blog.getThumbnail());
     }
 
     public List<Blog> getBlogList(){ return blogList; }
@@ -34,4 +35,16 @@ public class Storage {
     public List<Thumbnail> getThumbList() {
         return thumbList;
     }
+
+    public static class Memento{
+
+        private char[] stringTitle,stringDescription;
+
+        public Memento(String title,String description){
+            this.stringTitle = title.toCharArray();
+            stringDescription = description.toCharArray();
+        }
+
+    }
+
 }

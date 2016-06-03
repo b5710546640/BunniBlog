@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.salilthip.myblog">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +23,9 @@
         <activity
             android:name=".activities.CreateBlogActivity"
             android:label="@string/title_activity_create_blog"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.EditBlogActivity" />
+        <activity android:name=".activities.ViewBlogActivity" />
     </application>
 
 </manifest>
