@@ -20,7 +20,8 @@ public class ViewBlogActivity extends AppCompatActivity {
 
     private TextView titleBlog;
     private TextView descriptDetail;
-    private ImageView editlabel;
+    private TextView tagView;
+    private ImageView editlabel,profileImage;
 
     private Blog blog;
     private int locationList;
@@ -41,16 +42,23 @@ public class ViewBlogActivity extends AppCompatActivity {
         titleBlog = (TextView)findViewById(R.id.title_viewpage);
         descriptDetail = (TextView)findViewById(R.id.descript_viewpage);
         editlabel = (ImageView)findViewById(R.id.icon_edit_viewpage);
+        profileImage = (ImageView) findViewById(R.id.imageBlog_viewpage);
         titleBlog.setText(blog.getTitle());
         descriptDetail.setText(blog.getDescription());
+        profileImage.setImageBitmap(blog.getImageBlog());
         editlabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ViewBlogActivity.this,EditBlogActivity.class);
-                intent.putExtra("pos_blog",locationList);
+                Intent intent = new Intent(ViewBlogActivity.this, EditBlogActivity.class);
+                intent.putExtra("pos_blog", locationList);
                 startActivity(intent);
             }
         });
+        tagView = (TextView) findViewById(R.id.tag_view);
+        String s="";
+        for(String a: blog.getTags()) s+=a;
+        tagView.setText(s);
+
     }
 
 }

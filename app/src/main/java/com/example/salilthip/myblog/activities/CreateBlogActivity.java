@@ -29,12 +29,13 @@ import java.util.List;
 
 public class CreateBlogActivity extends AppCompatActivity {
 
-    private EditText titleEdt,descriptEdt;
+    private EditText titleEdt,descriptEdt,tags;
     private static int RESULT_LOAD_IMAGE = 1;
     private ImageButton addImage;
     private GridView gallery;
     private GalleryAdapter adapterGallery;
     private List<Bitmap> gall;
+    private FloatingActionButton saveBlog;
 
     public void initComponent(){
         gall = new ArrayList<Bitmap>();
@@ -45,6 +46,8 @@ public class CreateBlogActivity extends AppCompatActivity {
         titleEdt = (EditText) findViewById(R.id.title_edit);
 
         descriptEdt = (EditText) findViewById(R.id.descipt_edit);
+
+        tags = (EditText) findViewById(R.id.insert_tag);
 
         addImage = (ImageButton) findViewById(R.id.add_image);
         gallery = (GridView) findViewById(R.id.gallery);
@@ -63,15 +66,20 @@ public class CreateBlogActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton saveBlog = (FloatingActionButton) findViewById(R.id.save_new_blog);
+        saveBlog = (FloatingActionButton) findViewById(R.id.save_new_blog);
         saveBlog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Blog b = new Blog(titleEdt.getText()+"",descriptEdt.getText()+"");
-                Storage.getInstance().addNewBlog(b);
-                finish();
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                if(gall.size()!=0) {
+                    Blog b = new Blog(titleEdt.getText()+"",descriptEdt.getText()+"",tags.getText()+"");
+
+                    Storage.getInstance().addNewBlog(b, gall);
+                    Log.i("go go", Storage.getInstance().getBlogList().size() + "");
+                    finish();
+                }
+                    Snackbar.make(view, "Please select at least one image", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
             }
         });
     }
@@ -83,11 +91,11 @@ public class CreateBlogActivity extends AppCompatActivity {
         initComponent();
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.i("kk","l");
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };

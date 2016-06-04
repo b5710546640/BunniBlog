@@ -1,6 +1,7 @@
 package com.example.salilthip.myblog.utils;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.example.salilthip.myblog.models.Blog;
 import com.example.salilthip.myblog.models.Thumbnail;
@@ -22,11 +23,14 @@ public class Storage {
         return instance;
     }
 
+
     public Storage(){
         blogList = new ArrayList<Blog>();
     }
 
-    public void addNewBlog(Blog blog){
+    public void addNewBlog(Blog blog,List<Bitmap> gall){
+        blog.addAllImage(gall);
+        blog.makeThumbnail();
         blogList.add(blog);
     }
 

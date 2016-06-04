@@ -9,7 +9,8 @@
         android:orientation="horizontal">
         <RelativeLayout
             android:layout_width="100dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/relativeLayout3">
             <ImageView
                 android:id="@+id/profile_image"
                 android:layout_width="wrap_content"
@@ -17,7 +18,10 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/relativeLayout3"
+            android:layout_toEndOf="@+id/relativeLayout3"
+            android:layout_alignParentBottom="true">
             <TextView
                 android:id="@+id/title_cell"
                 android:layout_width="match_parent"

@@ -37,7 +37,7 @@ public class ThumbnailAdapter extends ArrayAdapter<Thumbnail> {
 
         title.setText(getItem(position).getTitle());
         descript.setText(getItem(position).getIntro());
-//        profile.setImageBitmap(getItem(position).getProfile());
+        profile.setImageBitmap(getItem(position).getImageBlog());
         return v;
     }
 }

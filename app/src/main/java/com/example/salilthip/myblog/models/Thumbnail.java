@@ -10,11 +10,18 @@ public class Thumbnail {
     private Blog blog;
     private String title;
     private String intro;
+    private Bitmap imageBlog;
 
     public Thumbnail(Blog b){
         blog = b;
         title = b.getTitle();
         intro = b.getDescription();
+        if(b.getImageBlog()!=null)
+        imageBlog = b.getImageBlog();
+    }
+
+    public Bitmap getImageBlog() {
+        return imageBlog;
     }
 
     public String getTitle() {

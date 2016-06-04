@@ -27,12 +27,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_view"/>
+    <EditText
+        android:id="@+id/insert_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:scrollbars="horizontal"
+        android:hint="Tag: (tag1,tag2,tag3,...)"
+        android:layout_below="@+id/title_edit"/>
     <TextView
         android:id="@+id/descipt_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Description"
-        android:layout_below="@+id/title_edit" />
+        android:layout_below="@+id/insert_tag" />
     <EditText
         android:id="@+id/descipt_edit"
         android:layout_width="fill_parent"

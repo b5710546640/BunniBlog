@@ -17,7 +17,6 @@ public class Gallery {
     public Gallery(Blog blog){
         this.blog = blog;
         gall = new ArrayList<Bitmap>();
-
     }
 
 
@@ -25,5 +24,9 @@ public class Gallery {
         return gall;
     }
 
+    public void clear(){ gall.clear(); }
 
+    public void saveImageToGallery(List<Bitmap> images) {
+        gall.addAll(images);
+    }
 }
