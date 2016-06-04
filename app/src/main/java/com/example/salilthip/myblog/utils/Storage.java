@@ -36,6 +36,7 @@ public class Storage {
 
     public List<Blog> getBlogList(){ return blogList; }
 
+
     public List<Thumbnail> getThumbList() {
         return thumbList;
     }

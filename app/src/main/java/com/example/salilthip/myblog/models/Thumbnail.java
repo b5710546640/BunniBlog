@@ -12,6 +12,14 @@ public class Thumbnail {
     private String intro;
     private Bitmap imageBlog;
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
     public Thumbnail(Blog b){
         blog = b;
         title = b.getTitle();

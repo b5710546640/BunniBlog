@@ -76,10 +76,10 @@ public class CreateBlogActivity extends AppCompatActivity {
                     Storage.getInstance().addNewBlog(b, gall);
                     Log.i("go go", Storage.getInstance().getBlogList().size() + "");
                     finish();
-                }
+                }else {
                     Snackbar.make(view, "Please select at least one image", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-
+                }
             }
         });
     }

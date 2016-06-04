@@ -48,6 +48,7 @@ public class Blog {
 
     public void setTitle(String title) {
         this.title = title;
+        thumbnail.setTitle(title);
     }
 
     public String getTitle() {
@@ -60,6 +61,7 @@ public class Blog {
 
     public void setDescription(String description) {
         this.description = description;
+        thumbnail.setIntro(description);
     }
     public void addTag(String tag){ tags.add(tag); }
 

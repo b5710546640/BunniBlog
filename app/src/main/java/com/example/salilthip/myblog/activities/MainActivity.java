@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ThumbnailAdapter thumbnailAdapter;
+    protected ThumbnailAdapter thumbnailAdapter;
     private ListView blogCellListView;
     private List<Thumbnail> thumbs;
     private List<Blog> dummyList;
@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CreateBlogActivity.class);
                 startActivity(intent);
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
     }
+
+
 
     @Override
     protected void onResume() {

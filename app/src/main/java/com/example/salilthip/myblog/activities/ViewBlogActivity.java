@@ -38,26 +38,38 @@ public class ViewBlogActivity extends AppCompatActivity {
 
     }
 
+    private void refreshText(){
+        titleBlog.setText(blog.getTitle());
+        descriptDetail.setText(blog.getDescription());
+        profileImage.setImageBitmap(blog.getImageBlog());
+
+        String s="";
+        for(String a: blog.getTags()) s+=a+",";
+        tagView.setText(s.substring(0,s.length()-1));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshText();
+    }
+
     private void initComponenets() {
         titleBlog = (TextView)findViewById(R.id.title_viewpage);
         descriptDetail = (TextView)findViewById(R.id.descript_viewpage);
         editlabel = (ImageView)findViewById(R.id.icon_edit_viewpage);
         profileImage = (ImageView) findViewById(R.id.imageBlog_viewpage);
-        titleBlog.setText(blog.getTitle());
-        descriptDetail.setText(blog.getDescription());
-        profileImage.setImageBitmap(blog.getImageBlog());
+        tagView = (TextView) findViewById(R.id.tag_view);
         editlabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewBlogActivity.this, EditBlogActivity.class);
                 intent.putExtra("pos_blog", locationList);
+                finish();
                 startActivity(intent);
             }
         });
-        tagView = (TextView) findViewById(R.id.tag_view);
-        String s="";
-        for(String a: blog.getTags()) s+=a;
-        tagView.setText(s);
+        refreshText();
 
     }
 
