@@ -4,13 +4,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.example.salilthip.myblog.utils.Storage;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Salilthip on 4/13/2016.
  */
-public class Blog {
+public class Blog implements Serializable{
 
     private String title;
     private String description;
@@ -24,6 +27,7 @@ public class Blog {
         gallery = new Gallery(this);
         tags = setTag(tag);
     }
+
 
     public void makeThumbnail(){
         thumbnail = new Thumbnail(this);

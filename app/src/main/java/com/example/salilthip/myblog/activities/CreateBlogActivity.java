@@ -70,14 +70,14 @@ public class CreateBlogActivity extends AppCompatActivity {
         saveBlog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(gall.size()!=0) {
+                if(gall.size()!=0 && titleEdt.getText().length()!=0 && descriptEdt.getText().length()!=0) {
                     Blog b = new Blog(titleEdt.getText()+"",descriptEdt.getText()+"",tags.getText()+"");
 
                     Storage.getInstance().addNewBlog(b, gall);
                     Log.i("go go", Storage.getInstance().getBlogList().size() + "");
                     finish();
                 }else {
-                    Snackbar.make(view, "Please select at least one image", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "You forgot to fill tiltle, decription or (at least one )image.", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }

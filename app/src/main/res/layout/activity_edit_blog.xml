@@ -41,13 +41,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_edit">
+        <TextView
+            android:id="@+id/tag_view_editpage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tag :"/>
         <EditText
             android:id="@+id/insert_tag_editpage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
             android:scrollbars="horizontal"
-            android:hint="Tag: (tag1,tag2,tag3,...)" />
+            android:hint="Ex: tag1,tag2,tag3"
+            android:layout_below="@id/tag_view_editpage"/>
         <TextView
             android:id="@+id/descipt_view_editpage"
             android:layout_width="match_parent"
