@@ -30,7 +30,8 @@
                 android:id="@+id/descript_cell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/title_cell"/>
+                android:layout_below="@+id/title_cell"
+                android:lines="3"/>
         </RelativeLayout>
     </RelativeLayout>
 
